@@ -1,0 +1,25 @@
+{
+  "name": "薬理学201問 暗記アプリ",
+  "short_name": "薬理201",
+  "description": "薬理学201問を復習できるオフライン対応暗記アプリ",
+  "lang": "ja",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f2f5fb",
+  "theme_color": "#2457d6",
+  "icons": [
+    {
+      "src": "./icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "./icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

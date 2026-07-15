@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#2457d6">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="薬理201">
+  <title>薬理学201問 暗記アプリ</title>
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="apple-touch-icon" href="./icon-180.png">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+<main class="app">
+  <header class="hero">
+    <div><p class="eyebrow">PHARMACOLOGY STUDY</p><h1>薬理学201問</h1><p class="subtitle">統合マスター176問＋国試想定25問</p></div>
+    <span id="saveState" class="save-state" aria-live="polite">保存済み</span>
+  </header>
+  <div id="storageNotice" class="notice" hidden></div>
+
+  <section class="stats" aria-label="学習状況">
+    <div class="stat"><strong id="totalCount">0</strong><span>全問題</span></div>
+    <div class="stat"><strong id="knownCount">0</strong><span>わかった</span></div>
+    <div class="stat"><strong id="unknownCount">0</strong><span>分からない</span></div>
+    <div class="stat"><strong id="unseenCount">0</strong><span>未学習</span></div>
+  </section>
+
+  <section class="panel filters" aria-label="問題の絞り込み">
+    <div class="field wide"><label for="searchInput">検索</label><input id="searchInput" type="search" placeholder="問題・解答・補足・番号を検索" autocomplete="off"></div>
+    <div class="field"><label for="statusFilter">学習状態</label><select id="statusFilter"><option value="all">すべて</option><option value="unseen">未学習だけ</option><option value="unknown">分からない問題だけ</option><option value="known">わかった問題だけ</option></select></div>
+    <div class="field"><label for="categoryFilter">分野</label><select id="categoryFilter"><option value="all">すべての分野</option></select></div>
+    <div class="field"><label for="orderSelect">並び順</label><select id="orderSelect"><option value="number">番号順</option><option value="shuffle">シャッフル</option></select></div>
+    <button id="reshuffleButton" class="sub-button" type="button">再シャッフル</button>
+    <div class="result-line"><strong id="matchCount">0</strong>問が該当</div>
+  </section>
+
+  <section id="emptyState" class="panel empty" hidden><h2>該当する問題がありません</h2><p>検索語や絞り込み条件を変更してください。</p><button id="resetFiltersButton" class="sub-button" type="button">絞り込みを解除</button></section>
+
+  <article id="questionCard" class="card" aria-live="polite">
+    <div class="card-top"><div><span id="questionNumber" class="number"></span><span id="questionCategory" class="category"></span></div><span id="questionProgress" class="progress"></span></div>
+    <h2 id="questionText" class="question"></h2>
+    <button id="answerToggle" class="answer-toggle" type="button" aria-expanded="false">解答を見る</button>
+    <div id="answerPanel" class="answer-panel" hidden><div class="answer-label">解答</div><p id="answerText" class="answer"></p><div class="answer-label">補足</div><p id="supplementText" class="supplement"></p><p id="originText" class="origin"></p></div>
+    <div id="judgeRow" class="judge-row" hidden><button id="knownButton" class="judge known" type="button">わかった</button><button id="unknownButton" class="judge unknown" type="button">分からなかった</button></div>
+    <p id="currentState" class="current-state"></p>
+  </article>
+
+  <nav class="nav-row" aria-label="問題移動"><button id="prevButton" type="button">← 前へ</button><label class="jump">番号<input id="jumpInput" type="number" min="1" max="201" inputmode="numeric"><button id="jumpButton" type="button">移動</button></label><button id="nextButton" type="button">次へ →</button></nav>
+
+  <details class="panel backup"><summary>保存・バックアップ・リセット</summary><p>判定・絞り込み・並び順・現在位置は、この端末の同じブラウザに自動保存されます。</p><div class="backup-row"><button id="exportButton" type="button">バックアップを書き出す</button><label class="file-button">バックアップを読み込む<input id="importInput" type="file" accept="application/json,.json"></label><button id="resetButton" class="danger" type="button">学習記録を全消去</button></div><p id="message" class="message" aria-live="polite"></p></details>
+  <footer>GitHub Pages・ホーム画面追加・オフライン利用対応</footer>
+</main>
+<script src="./data.js"></script><script src="./app.js"></script>
+</body></html>

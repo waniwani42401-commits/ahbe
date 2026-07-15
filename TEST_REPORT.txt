@@ -1,0 +1,61 @@
+薬理学201問 暗記PWA 検証記録
+作成日: 2026-07-15
+
+【収録データ】 PASS
+- 統合マスター: 176問
+- 授業レジュメ由来・国試想定: 25問
+- 合計: 201問
+- ID: 1〜201の連番、重複なし、欠番なし
+- 必須項目: id / category / question / answer / supplement / status / origin
+- 全201問で必須項目の欠損・空欄なし
+- 統合マスター側176問は元JSONとオブジェクト単位で一致
+- questions.json と data.js の問題データ一致
+
+【根拠資料確認】 PASS
+- PDF全57ページを画像レンダリングして確認
+- 追加25問に関連するページ（1, 4, 6, 11〜21, 27, 30, 42）を重点確認
+- 追加問題ID 177〜201の出典ページ対応を build-info.json に記録
+
+【静的検査】 PASS
+- app.js JavaScript構文: 合格
+- sw.js JavaScript構文: 合格
+- data.js JavaScript構文: 合格
+- manifest.webmanifest JSON構文・相対start_url/scope: 合格
+- アイコン寸法: 180×180 / 192×192 / 512×512
+- HTML・manifest・Service Workerから参照する全ファイルの存在確認
+
+【ブラウザ機能検査】 PASS
+実行環境: Chromium 144.0.7559.96 built on Debian GNU/Linux 13 (trixie)
+- Chromiumで33アサーション合格
+- 初期201問認識、番号順1〜201
+- 解答の初期非表示
+- 解答表示後のみ判定ボタン表示
+- わかった／分からなかった保存
+- 判定後の自動移動
+- 保存状態と現在位置の復元
+- 分からない問題だけ復習
+- 未学習、分野、検索の各絞り込み
+- 番号順、201問重複なしシャッフル
+- 絞り込み前後・再読込後もシャッフル順を維持
+- 再シャッフル
+- バックアップJSON書き出し
+- バックアップ読込み・不正ID/状態の除外
+- 壊れた保存データの自動修復
+- 問題番号ジャンプ
+
+【iPhone表示検査】 PASS
+- 320×568 / 375×812 / 390×844 / 430×932 px
+- 長文問題（No.199）を含め横方向のはみ出しなし
+- safe-area-inset、タップ領域、長文折返しを確認
+
+【Service Worker / オフライン】 PASS
+- install: 必須10資産を事前キャッシュ
+- activate: 旧キャッシュ削除、clients.claim
+- 静的資産: キャッシュヒット
+- ナビゲーション: ネットワーク失敗時にindex.htmlへフォールバック
+- GitHub Pagesサブディレクトリ対応: URLは相対パス、start_url/scopeは ./
+
+【ZIP検査】 PASS
+- 必須ファイルがZIP直下に配置
+- 余分な親フォルダなし
+- ZIP CRC検査合格
